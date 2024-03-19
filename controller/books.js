@@ -1,15 +1,11 @@
 const model = require("../model/db.js")
-
 const { v4: uuid } = require("uuid")
 
 const createBook = async (req, res) => {
 
     const {books} = await model()
-
     try {
-
         const obj = {
-
             id: uuid(),
             name: req.body.name,
             author: req.body.author,
@@ -17,32 +13,21 @@ const createBook = async (req, res) => {
             category: req.body.category,
             price: req.body.price,
             stock: req.body.stock
-
         }
-
 
         const q = await books.create(obj)
         if(q){
-
             res.send({
                 msg: "Book created successfully!",
                 err: false
             })
-
         }
         else {
-
-
             res.send({
                 msg: "Book not created!",
                 err: true
             })
-
-
-
         }
-
-
     }
 
     catch (e){
@@ -55,17 +40,12 @@ const createBook = async (req, res) => {
 
 }
 
-
-
-
 const updateBook = async (req, res) => {
 
     try {
-
         const {books} = await model()
 
         const obj = {
-
             id: req.params.id,
             name: req.body.name,
             author: req.body.author,
@@ -73,7 +53,6 @@ const updateBook = async (req, res) => {
             category: req.body.category,
             price: req.body.price,
             stock: req.body.stock
-
         }
 
         let keys = {}
@@ -82,8 +61,6 @@ const updateBook = async (req, res) => {
                 keys[i] = j
             }
         }
-
-
         const q = await books.update(keys, {
             where: {
                 id: obj.id,
@@ -91,26 +68,17 @@ const updateBook = async (req, res) => {
         });
 
         if(q){
-
             res.send({
                 msg: "Book updated successfully!",
                 err: false
             })
-
         }
         else {
-
-
             res.send({
                 msg: "Book not found!",
                 err: true
             })
-
-
-
         }
-
-
     }
     catch (e){
         res.send({
@@ -121,13 +89,9 @@ const updateBook = async (req, res) => {
 
 }
 
-
-
-
 const deleteBook = async (req, res) => {
 
     try {
-
         const {books} = await model()
 
         let id = req.params.id
@@ -142,18 +106,11 @@ const deleteBook = async (req, res) => {
 
         }
         else {
-
-
             res.send({
                 msg: "Book not found!",
                 err: true
             })
-
-
-
         }
-
-
 
     }
     catch (e){
@@ -164,36 +121,22 @@ const deleteBook = async (req, res) => {
     }
 
 }
-
-
 
 const getBook = async (req, res) => {
 
     try {
-
         const {books} = await model()
-
         let id = req.params.id
-
         const q = await books.findOne({ where: { id: id } })
         if(q){
-
             res.send(q)
-
         }
         else {
-
-
             res.send({
                 msg: "Book not found!",
                 err: true
             })
-
-
-
         }
-
-
     }
     catch (e){
         res.send({
@@ -201,22 +144,14 @@ const getBook = async (req, res) => {
             err: true
         })
     }
-
-
 }
-
-
 
 const getAllBook = async (req, res) => {
 
     const {books} = await model()
-
     try {
-
-
         let limit = parseInt(req.query.limit)
         let offset = parseInt(req.query.offset)
-
 
         let obj = {
             "total_items": 0,
@@ -225,9 +160,6 @@ const getAllBook = async (req, res) => {
             "current_page": 0,
             "hasMore": false
         }
-
-
-
 
         const q = await books.findAll({ limit: limit, offset: offset })
         if(q){
@@ -255,15 +187,10 @@ const getAllBook = async (req, res) => {
 
         }
         else {
-
-
             res.send({
                 msg: "cannot get books!",
                 err: true
             })
-
-
-
         }
 
     }
