@@ -14,30 +14,16 @@ const sequelize = new Sequelize(
     }
 )
 
-
 const users = userTable(sequelize, DataTypes)
 const books = bookTable(sequelize, DataTypes)
-
-
-
 const Models = {
     Op,
     users,
     books
 }
-
-// sequelize.sync();
-// sequelize.authenticate();
-// console.log('=> Connection started...');
-
-
-// module.exports = Models
-
 const connection = {}
 
 module.exports = async function(){
-
-    // return new Promise(async function(res,rej){
 
         if (connection.isConnected) {
             console.log('=> Using existing connection.')
@@ -48,7 +34,5 @@ module.exports = async function(){
         connection.isConnected = true;
         console.log('=> Created a new connection.')
         return(Models)
-
-    // })
-
+        
 }

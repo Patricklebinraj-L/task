@@ -6,7 +6,6 @@ const users = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
             primaryKey: true
-
         },
         name: {
             type: DataTypes.STRING,
@@ -29,7 +28,5 @@ const users = (sequelize, DataTypes) => {
 
     return table
 }
-
-
 
 module.exports = users

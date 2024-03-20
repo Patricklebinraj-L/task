@@ -1,6 +1,5 @@
 const bcrypt = require("bcrypt")
 
-
 const encrypt = async function(password,res){
 
     bcrypt.hash(password, 10, function(err, hash) {
@@ -15,7 +14,6 @@ const encrypt = async function(password,res){
     })
 
 }
-
 
 const decrypt = function(password,encrypt,res){
 

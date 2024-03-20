@@ -1,14 +1,10 @@
-
-
 const books = (sequelize, DataTypes) => {
 
     const table = sequelize.define("books", {
-
         id: {
             type: DataTypes.STRING,
             allowNull: false,
             primaryKey: true
-
         },
         name: {
             type: DataTypes.STRING,
@@ -30,11 +26,12 @@ const books = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false
         },
-
+        category: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
     })
-
     return table
 }
-
 
 module.exports = books

@@ -146,6 +146,51 @@ const getBook = async (req, res) => {
     }
 }
 
+
+
+
+const getBookByName = async (req, res) => {
+
+    try {
+        const name = req.body.name
+        const {books,Op} = await model()
+        let id = req.params.id
+        const q = await books.findAll({
+            where: {
+                [Op.or]:{
+                    name:
+                    {
+                        [Op.eq]: `${name}`
+                    },
+                    name:
+                    {
+                        [Op.like]: `%${name}%`
+                    }
+                }
+            }
+        })
+
+        if (q) {
+            res.send(q)
+        }
+        else {
+            res.send({
+                msg: "Book not found!",
+                err: true
+            })
+        }
+    }
+    catch (e){
+        res.send({
+            msg: "Something went wrong!",
+            err: true
+        })
+    }
+}
+
+
+
+
 const getAllBook = async (req, res) => {
 
     const {books} = await model()
@@ -211,6 +256,7 @@ module.exports = {
     createBook: createBook,
     updateBook: updateBook,
     deleteBook: deleteBook,
-    getBook: getBook,
+    getBookByID: getBook,
+    getBookByName: getBookByName,
     getAllBook: getAllBook
 }
