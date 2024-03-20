@@ -154,7 +154,6 @@ const getBookByName = async (req, res) => {
     try {
         const name = req.body.name
         const {books,Op} = await model()
-        let id = req.params.id
         const q = await books.findAll({
             where: {
                 [Op.or]:{
